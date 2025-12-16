@@ -1,96 +1,97 @@
 # AI Development Guidelines
 
-A framework for AI-assisted development with Claude and similar coding assistants.
+AIコーディングアシスタント（Claude等）との協働開発のためのガイドラインフレームワーク。
 
-## Overview
+## 概要
 
-This repository provides a **skeleton framework** for security-conscious AI-assisted development. It includes coding standards, workflow definitions, and quality gates that can be adapted to your projects.
+セキュリティを重視したAI協働開発のための**骨格フレームワーク**。コーディング規約、ワークフロー定義、品質ゲートを提供する。
 
-**Important**: This is a reference framework, not a complete plug-and-play solution. You should customize these guidelines for your specific needs.
+**重要**: これは参考用のフレームワークであり、そのまま使える完全なソリューションではない。プロジェクトに合わせてカスタマイズして使用すること。
 
-## File Structure
+## ファイル構成
 
-| File | Description |
-|------|-------------|
-| **Coding.md** | Coding standards, style guide, architecture principles, pre-submission checklist |
-| **Workflow.md** | AI-assisted development workflow, agent team structure, phase definitions |
-| **UpdateGuide.md** | Guideline update procedures, review process |
+| ファイル | 内容 |
+|----------|------|
+| **Coding.md** | コーディング規約、スタイルガイド、アーキテクチャ原則、提出前チェックリスト |
+| **Workflow.md** | AI協働開発ワークフロー、エージェントチーム構成、フェーズ定義 |
+| **UpdateGuide.md** | ガイドライン更新手順、レビュープロセス |
 
-## What's NOT Included
+## 含まれていないもの
 
-**Security.md** is intentionally not included. Security configurations vary significantly by:
-- Project type (Web, API, CLI, library)
-- Deployment environment (local, cloud, on-premise)
-- Compliance requirements (GDPR, HIPAA, PCI-DSS)
-- Risk tolerance
+**Security.md**は意図的に含めていない。セキュリティ設定はプロジェクトによって大きく異なる：
 
-You should create your own Security.md tailored to your project's needs. The Coding.md and Workflow.md files reference Security.md as a placeholder for your custom security standards.
+- プロジェクトタイプ（Web、API、CLI、ライブラリ）
+- デプロイ環境（ローカル、クラウド、オンプレミス）
+- コンプライアンス要件（GDPR、HIPAA、PCI-DSS）
+- リスク許容度
 
-## Core Principles
+プロジェクトに合わせた独自のSecurity.mdを作成すること。Coding.mdとWorkflow.mdはSecurity.mdをプレースホルダとして参照している。
 
-### Security First
-- No compromise on security regardless of project scale
-- Apply all applicable security measures
-- When in doubt, implement the security measure
+## 基本方針
 
-### AI Collaboration
-- Never trust AI-generated code without review
-- Humans decide architecture, AI assists implementation
-- Document generation prompts for reproducibility
+### セキュリティ最優先
+- プロジェクト規模に関わらずセキュリティ基準は妥協しない
+- 適用可能なセキュリティ対策は全て実施
+- 迷ったらセキュリティ対策を実施する
 
-### Quality Gates
-- Static analysis required before commit (mypy, ruff, bandit)
-- Pre-submission checklist verification for every change
-- Security review for critical code paths
+### AI協働
+- AI生成コードは信頼せず必ずレビュー
+- アーキテクチャは人間が決定、AIは実装を支援
+- 生成プロンプトを記録して再現性を確保
 
-## Workflow Overview
+### 品質ゲート
+- コミット前に静的解析必須（mypy, ruff, bandit）
+- 変更ごとに提出前チェックリストを確認
+- 重要なコードパスにはセキュリティレビュー
+
+## ワークフロー概要
 
 ```
-User Requirements
-      |
-[Phase 1] Claude: Requirements Definition
-      |
-[Phase 1.5] Coder: Work Estimation
-      |
-[Phase 2] Coder: Implementation (per Coding.md)
-      |
-[Phase 3] Security Reviewer: Verification (per your Security.md)
-      |
-[Phase 3.5] Claude: Code Quality Review
-      |
-[Phase 4] Claude: Integrated Report
-      |
-[Phase 5] User: Approve or Request Fixes
-      |
-   Complete
+ユーザー要件
+     ↓
+[Phase 1] Claude: 要件定義
+     ↓
+[Phase 1.5] Coder: 見積もり
+     ↓
+[Phase 2] Coder: 実装 (Coding.md準拠)
+     ↓
+[Phase 3] Security Reviewer: 検証 (独自Security.md準拠)
+     ↓
+[Phase 3.5] Claude: コード品質レビュー
+     ↓
+[Phase 4] Claude: 統合報告
+     ↓
+[Phase 5] ユーザー: 承認 or 修正指示
+     ↓
+   完了
 ```
 
-## How to Use
+## 使い方
 
-### For AI Assistants
-Reference these documents in your system prompt or CLAUDE.md. The agent commands (`/coder`, `/security-review`) are conceptual prompts - adapt them to your tooling.
+### AIアシスタント向け
+システムプロンプトやCLAUDE.mdでこれらのドキュメントを参照。エージェントコマンド（`/coder`、`/security-review`）は概念的なプロンプト例として記載している。
 
-### For Developers
-- Use the Pre-Submission Checklist before code submission
-- Follow the Universal Coding Principles (10 items in Coding.md)
-- Create your own Security.md with project-specific requirements
+### 開発者向け
+- コード提出前にPre-Submission Checklistを使用
+- Universal Coding Principles（10項目）に従う
+- プロジェクト固有のSecurity.mdを作成
 
-### For Teams
-- Adapt the workflow phases to your development process
-- Map agent roles (Coder, Security Reviewer) to team members or AI assistants
-- Customize the estimation and review criteria for your context
+### チーム向け
+- ワークフローフェーズを開発プロセスに適用
+- エージェント役割（Coder、Security Reviewer）をチームメンバーまたはAIに割り当て
+- 見積もり・レビュー基準をコンテキストに合わせて調整
 
-## Customization Guide
+## カスタマイズ手順
 
-1. **Fork this repository**
-2. **Create Security.md** for your project (include: security principles, review checklist, incident response)
-3. **Adjust Coding.md** for your language/framework preferences
-4. **Modify Workflow.md** phases to match your team structure
+1. このリポジトリをフォーク
+2. プロジェクト用のSecurity.mdを作成（セキュリティ原則、レビューチェックリスト、インシデント対応を含める）
+3. Coding.mdを言語/フレームワークに合わせて調整
+4. Workflow.mdのフェーズをチーム構成に合わせて修正
 
 ## Known Limitations
 
-See the "Known Limitations" sections in Coding.md and Workflow.md for acknowledged gaps and future improvement areas. These are documented transparently.
+Coding.mdとWorkflow.mdの「Known Limitations」セクションに既知の制限・改善候補を記載している。
 
-## License
+## ライセンス
 
-MIT License - Free to customize and use.
+MIT License - 自由にカスタマイズして使用可能。
